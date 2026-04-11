@@ -23,10 +23,13 @@ h1 {
   color:#ff7a00;
 }
 
+.search-box {
+  margin-bottom:15px;
+}
+
 .search {
   width:100%;
   padding:12px;
-  margin-bottom:15px;
   border-radius:10px;
   border:1px solid #ddd;
 }
@@ -37,6 +40,11 @@ h1 {
   border-radius:12px;
   margin-bottom:10px;
   box-shadow:0 4px 8px rgba(0,0,0,0.05);
+  transition:0.2s;
+}
+
+.hidden {
+  opacity:0.2;
 }
 
 .name {
@@ -60,43 +68,52 @@ h1 {
 <div class="container">
   <h1>🍊 Orange Store</h1>
 
-  <input type="text" class="search" placeholder="검색..." onkeyup="searchItem(this.value)">
+  <div class="search-box">
+    <input type="text" class="search" placeholder="검색..." onkeyup="filterItems(this.value)">
+  </div>
 
-  <div id="list"></div>
+  <div id="list">
+    <div class="item" data-name="신화 상자">
+      <div class="name">신화 상자</div>
+      <div class="price">0.1 / 5천개</div>
+      <div class="stock">재고 30</div>
+    </div>
+
+    <div class="item" data-name="클랜 재시작">
+      <div class="name">클랜 재시작</div>
+      <div class="price">0.1 / 1만개</div>
+      <div class="stock">재고 250k</div>
+    </div>
+
+    <div class="item" data-name="패시브 샤드">
+      <div class="name">패시브 샤드</div>
+      <div class="price">0.1 / 5만개</div>
+      <div class="stock">재고 500k</div>
+    </div>
+
+    <div class="item" data-name="파워 샤드">
+      <div class="name">파워 샤드</div>
+      <div class="price">0.1 / 1천개</div>
+      <div class="stock">재고 80</div>
+    </div>
+  </div>
+
 </div>
 
 <script>
-const items = [
-  {name:"신화 상자", price:"0.1 / 5천개", stock:"재고 30"},
-  {name:"클랜 재시작", price:"0.1 / 1만개", stock:"재고 250k"},
-  {name:"패시브 샤드", price:"0.1 / 5만개", stock:"재고 500k"},
-  {name:"파워 샤드", price:"0.1 / 1천개", stock:"재고 80"},
-  {name:"보스 티켓", price:"0.1 / 1만개", stock:"재고 56"}
-];
+function filterItems(keyword) {
+  const items = document.querySelectorAll(".item");
 
-function render(data) {
-  const list = document.getElementById("list");
-  list.innerHTML = "";
+  items.forEach(item => {
+    const name = item.getAttribute("data-name");
 
-  data.forEach(item => {
-    list.innerHTML += `
-      <div class="item">
-        <div class="name">${item.name}</div>
-        <div class="price">${item.price}</div>
-        <div class="stock">${item.stock}</div>
-      </div>
-    `;
+    if(name.includes(keyword)) {
+      item.classList.remove("hidden");
+    } else {
+      item.classList.add("hidden");
+    }
   });
 }
-
-function searchItem(keyword) {
-  const filtered = items.filter(item =>
-    item.name.includes(keyword)
-  );
-  render(filtered);
-}
-
-render(items);
 </script>
 
 </body>
