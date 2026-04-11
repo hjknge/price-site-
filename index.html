@@ -8,9 +8,8 @@
 <style>
 body {
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:'Segoe UI',sans-serif;
   background:#fff7f0;
-  color:#333;
 }
 
 .container {
@@ -19,72 +18,39 @@ body {
   padding:20px;
 }
 
-.header {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:20px;
-}
-
-.header img {
-  width:40px;
-  margin-right:10px;
-}
-
-.header h1 {
+h1 {
+  text-align:center;
   color:#ff7a00;
 }
 
-.card {
-  background:#fff;
-  padding:15px;
-  border-radius:14px;
-  margin-bottom:15px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.05);
-}
-
-input {
+.search {
   width:100%;
-  padding:10px;
-  margin-bottom:10px;
+  padding:12px;
+  margin-bottom:15px;
   border-radius:10px;
   border:1px solid #ddd;
 }
 
-button {
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  background:#ff7a00;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-
 .item {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px;
-  border-bottom:1px solid #eee;
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:10px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.05);
 }
 
-.item:last-child {
-  border:none;
+.name {
+  font-weight:bold;
 }
 
 .price {
   color:#ff7a00;
-  font-weight:bold;
+  margin-top:5px;
 }
 
-.delete {
-  background:#ff4d4d;
-  padding:5px 10px;
-  border-radius:6px;
-  color:white;
-  cursor:pointer;
+.stock {
+  font-size:13px;
+  color:#777;
 }
 </style>
 </head>
@@ -92,67 +58,45 @@ button {
 <body>
 
 <div class="container">
+  <h1>🍊 Orange Store</h1>
 
-  <div class="header">
-    <img src="여기에_이미지링크">
-    <h1>Orange Store</h1>
-  </div>
+  <input type="text" class="search" placeholder="검색..." onkeyup="searchItem(this.value)">
 
-  <div class="card">
-    <input id="name" placeholder="제품명">
-    <input id="price" placeholder="가격 (예: 0.1 / 5천개)">
-    <button onclick="addItem()">추가</button>
-  </div>
-
-  <div class="card" id="list"></div>
-
+  <div id="list"></div>
 </div>
 
 <script>
-let items = JSON.parse(localStorage.getItem("items")) || [];
+const items = [
+  {name:"신화 상자", price:"0.1 / 5천개", stock:"재고 30"},
+  {name:"클랜 재시작", price:"0.1 / 1만개", stock:"재고 250k"},
+  {name:"패시브 샤드", price:"0.1 / 5만개", stock:"재고 500k"},
+  {name:"파워 샤드", price:"0.1 / 1천개", stock:"재고 80"},
+  {name:"보스 티켓", price:"0.1 / 1만개", stock:"재고 56"}
+];
 
-function save() {
-  localStorage.setItem("items", JSON.stringify(items));
-}
-
-function render() {
+function render(data) {
   const list = document.getElementById("list");
   list.innerHTML = "";
 
-  items.forEach((item, index) => {
+  data.forEach(item => {
     list.innerHTML += `
       <div class="item">
-        <div>
-          <div>${item.name}</div>
-          <div class="price">${item.price}</div>
-        </div>
-        <div class="delete" onclick="removeItem(${index})">삭제</div>
+        <div class="name">${item.name}</div>
+        <div class="price">${item.price}</div>
+        <div class="stock">${item.stock}</div>
       </div>
     `;
   });
 }
 
-function addItem() {
-  const name = document.getElementById("name").value;
-  const price = document.getElementById("price").value;
-
-  if(!name || !price) return;
-
-  items.push({name, price});
-  save();
-  render();
-
-  document.getElementById("name").value = "";
-  document.getElementById("price").value = "";
+function searchItem(keyword) {
+  const filtered = items.filter(item =>
+    item.name.includes(keyword)
+  );
+  render(filtered);
 }
 
-function removeItem(index) {
-  items.splice(index,1);
-  save();
-  render();
-}
-
-render();
+render(items);
 </script>
 
 </body>
