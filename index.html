@@ -31,7 +31,6 @@ h1 {
   border:1px solid #ddd;
 }
 
-/* 카테고리 */
 .category-title {
   margin-top:20px;
   margin-bottom:10px;
@@ -39,7 +38,6 @@ h1 {
   color:#ff7a00;
 }
 
-/* 아이템 */
 .item {
   background:white;
   padding:15px;
@@ -64,6 +62,13 @@ h1 {
 .stock {
   font-size:13px;
   color:#777;
+}
+
+.footer {
+  text-align:center;
+  margin-top:20px;
+  color:#555;
+  font-size:14px;
 }
 </style>
 </head>
@@ -94,61 +99,67 @@ h1 {
     <div class="category-title">🎮 게임패스</div>
     <div class="item" data-name="경험치">
       <div class="name">경험치 ×2</div>
-      <div class="price">0.2 / 1개</div>
+      <div class="price">0.2 / 1</div>
       <div class="stock">재고 29개</div>
     </div>
 
     <div class="item" data-name="잼">
       <div class="name">잼 ×2</div>
-      <div class="price">0.2 / 1개</div>
+      <div class="price">0.2 / 1</div>
       <div class="stock">재고 33개</div>
     </div>
 
     <div class="item" data-name="머니">
       <div class="name">머니 ×2</div>
-      <div class="price">0.2 / 1개</div>
+      <div class="price">0.2 / 1</div>
       <div class="stock">재고 32개</div>
     </div>
 
     <div class="item" data-name="팩">
       <div class="name">잼/머니/경험치 ×2배 팩</div>
-      <div class="price">0.5 / 1팩</div>
+      <div class="price">0.5 / 1</div>
       <div class="stock">재고 29개</div>
     </div>
 
     <div class="category-title">🎟️ 소환권</div>
     <div class="item" data-name="에스데스 소환권">
       <div class="name">에스데스 소환권</div>
-      <div class="price">0.1 / 2만개</div>
+      <div class="price">0.1 / 20k</div>
       <div class="stock">재고 32만개</div>
     </div>
 
     <div class="item" data-name="코쿠시보 소환권">
       <div class="name">코쿠시보 소환권</div>
-      <div class="price">0.1 / 3만개</div>
+      <div class="price">0.1 / 30k</div>
       <div class="stock">재고 40만개</div>
     </div>
 
     <div class="category-title">🧍 캐릭터</div>
     <div class="item" data-name="마다라">
       <div class="name">마다라 (f스킬 포함 / 타이틀 미포함)</div>
-      <div class="price">0.1 / 1개</div>
+      <div class="price">0.1 / 1</div>
       <div class="stock">재고 문의</div>
     </div>
 
     <div class="item" data-name="코쿠시보">
       <div class="name">코쿠시보 (f스킬 포함 / 타이틀 미포함)</div>
-      <div class="price">0.1 / 1개</div>
+      <div class="price">0.1 / 1</div>
       <div class="stock">재고 문의</div>
     </div>
 
     <div class="item" data-name="에스데스">
       <div class="name">에스데스 (f스킬 포함 / 타이틀 미포함)</div>
-      <div class="price">0.1 / 1개</div>
+      <div class="price">0.1 / 1</div>
       <div class="stock">재고 문의</div>
     </div>
 
   </div>
+
+  <!-- 최소 구매 -->
+  <div class="footer">
+    최소 구매: 0.1
+  </div>
+
 </div>
 
 <script>
