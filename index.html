@@ -23,28 +23,33 @@ h1 {
   color:#ff7a00;
 }
 
-.search-box {
-  margin-bottom:15px;
-}
-
 .search {
   width:100%;
   padding:12px;
+  margin-bottom:15px;
   border-radius:10px;
   border:1px solid #ddd;
 }
 
+/* 카테고리 */
+.category-title {
+  margin-top:20px;
+  margin-bottom:10px;
+  font-weight:bold;
+  color:#ff7a00;
+}
+
+/* 아이템 */
 .item {
   background:white;
   padding:15px;
   border-radius:12px;
   margin-bottom:10px;
   box-shadow:0 4px 8px rgba(0,0,0,0.05);
-  transition:0.2s;
 }
 
 .hidden {
-  opacity:0.2;
+  display:none;
 }
 
 .name {
@@ -68,44 +73,91 @@ h1 {
 <div class="container">
   <h1>🍊 Orange Store</h1>
 
-  <div class="search-box">
-    <input type="text" class="search" placeholder="검색..." onkeyup="filterItems(this.value)">
-  </div>
+  <input type="text" class="search" placeholder="검색..." onkeyup="filterItems(this.value)">
 
   <div id="list">
+
+    <div class="category-title">📦 상자</div>
     <div class="item" data-name="신화 상자">
       <div class="name">신화 상자</div>
-      <div class="price">0.1 / 5천개</div>
+      <div class="price">0.1 / 만개</div>
       <div class="stock">재고 입고 예정</div>
     </div>
 
+    <div class="category-title">🔄 리롤</div>
     <div class="item" data-name="클랜 재시작">
       <div class="name">클랜 재시작</div>
       <div class="price">0.1 / 2만개</div>
-      <div class="stock">재고 1M</div>
+      <div class="stock">재고 백만개</div>
     </div>
 
-    <div class="item" data-name="패시브 샤드">
-      <div class="name">패시브 샤드</div>
-      <div class="price">0.1 / 6만개</div>
-      <div class="stock">재고 320k</div>
+    <div class="category-title">🎮 게임패스</div>
+    <div class="item" data-name="경험치">
+      <div class="name">경험치 ×2</div>
+      <div class="price">0.2 / 1개</div>
+      <div class="stock">재고 29개</div>
     </div>
 
-    <div class="item" data-name="파워 샤드">
-      <div class="name">파워 샤드</div>
-      <div class="price">0.1 / 5천개</div>
-      <div class="stock">재고 49k</div>
+    <div class="item" data-name="잼">
+      <div class="name">잼 ×2</div>
+      <div class="price">0.2 / 1개</div>
+      <div class="stock">재고 33개</div>
     </div>
+
+    <div class="item" data-name="머니">
+      <div class="name">머니 ×2</div>
+      <div class="price">0.2 / 1개</div>
+      <div class="stock">재고 32개</div>
+    </div>
+
+    <div class="item" data-name="팩">
+      <div class="name">잼/머니/경험치 ×2배 팩</div>
+      <div class="price">0.5 / 1팩</div>
+      <div class="stock">재고 29개</div>
+    </div>
+
+    <div class="category-title">🎟️ 소환권</div>
+    <div class="item" data-name="에스데스 소환권">
+      <div class="name">에스데스 소환권</div>
+      <div class="price">0.1 / 2만개</div>
+      <div class="stock">재고 32만개</div>
+    </div>
+
+    <div class="item" data-name="코쿠시보 소환권">
+      <div class="name">코쿠시보 소환권</div>
+      <div class="price">0.1 / 3만개</div>
+      <div class="stock">재고 40만개</div>
+    </div>
+
+    <div class="category-title">🧍 캐릭터</div>
+    <div class="item" data-name="마다라">
+      <div class="name">마다라 (f스킬 포함 / 타이틀 미포함)</div>
+      <div class="price">0.1 / 1개</div>
+      <div class="stock">재고 문의</div>
+    </div>
+
+    <div class="item" data-name="코쿠시보">
+      <div class="name">코쿠시보 (f스킬 포함 / 타이틀 미포함)</div>
+      <div class="price">0.1 / 1개</div>
+      <div class="stock">재고 문의</div>
+    </div>
+
+    <div class="item" data-name="에스데스">
+      <div class="name">에스데스 (f스킬 포함 / 타이틀 미포함)</div>
+      <div class="price">0.1 / 1개</div>
+      <div class="stock">재고 문의</div>
+    </div>
+
   </div>
-
 </div>
 
 <script>
 function filterItems(keyword) {
   const items = document.querySelectorAll(".item");
+  keyword = keyword.toLowerCase();
 
   items.forEach(item => {
-    const name = item.getAttribute("data-name");
+    const name = item.getAttribute("data-name").toLowerCase();
 
     if(name.includes(keyword)) {
       item.classList.remove("hidden");
